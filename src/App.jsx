@@ -54,6 +54,15 @@ const SGPACalculator = () => {
       gpa: "",
     };
     setCourses((prev) => [...prev, newCourse]);
+
+    // Prevent keyboard from closing on mobile by maintaining focus
+    setTimeout(() => {
+      const inputs = document.querySelectorAll('input[type="number"]');
+      const lastInput = inputs[inputs.length - 1];
+      if (lastInput && window.innerWidth <= 768) {
+        lastInput.focus();
+      }
+    }, 100);
   };
 
   const removeCourse = (courseId) => {
@@ -284,6 +293,7 @@ const SGPACalculator = () => {
       <div className="fixed bottom-4 left-4 right-4 z-20 max-w-2xl mx-auto">
         <button
           onClick={addCourse}
+          onMouseDown={(e) => e.preventDefault()}
           className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold py-4 px-6 rounded-xl text-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 shadow-2xl"
         >
           ➕ Add Course

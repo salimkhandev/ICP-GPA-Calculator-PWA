@@ -131,7 +131,7 @@ const SGPACalculator = () => {
         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 sm:p-8 text-center">
           <div className="flex justify-center mb-4">
             <img
-              src="/assets/logo.png"
+              src="/ICP-logo.png"
               alt="SGPA Calculator Logo"
               className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
               onError={(e) => {

@@ -192,23 +192,7 @@ const SGPACalculator = () => {
                   </button>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Credit Hours
-                    </label>
-                    <input
-                      type="number"
-                      min="1"
-                      max="6"
-                      step="1"
-                      placeholder="e.g., 3"
-                      value={course.credits}
-                      onChange={(e) =>
-                        updateCourse(course.id, "credits", e.target.value)
-                      }
-                      className="w-full p-3 border-2 border-gray-300 rounded-xl text-base focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-colors"
-                    />
-                  </div>
+               
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Grade Point (GPA)
@@ -222,6 +206,23 @@ const SGPACalculator = () => {
                       value={course.gpa}
                       onChange={(e) =>
                         updateCourse(course.id, "gpa", e.target.value)
+                      }
+                      className="w-full p-3 border-2 border-gray-300 rounded-xl text-base focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Credit Hours
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      max="6"
+                      step="1"
+                      placeholder="e.g., 3"
+                      value={course.credits}
+                      onChange={(e) =>
+                        updateCourse(course.id, "credits", e.target.value)
                       }
                       className="w-full p-3 border-2 border-gray-300 rounded-xl text-base focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-colors"
                     />

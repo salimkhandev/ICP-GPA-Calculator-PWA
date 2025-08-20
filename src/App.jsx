@@ -125,7 +125,7 @@ const SGPACalculator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-purple-700 p-2 sm:p-5">
+    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-purple-700 p-2 sm:p-5 pb-24">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 sm:p-8 text-center rounded-t-3xl shadow-2xl">
@@ -145,16 +145,6 @@ const SGPACalculator = () => {
           <p className="text-lg opacity-90">
             Calculate your Semester Grade Point Average
           </p>
-        </div>
-
-        {/* Sticky Add Course Button */}
-        <div className="sticky top-0 z-10 bg-white p-4 sm:p-6 border-b border-gray-200 shadow-lg">
-          <button
-            onClick={addCourse}
-            className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold py-4 px-6 rounded-xl text-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-          >
-            ➕ Add Course
-          </button>
         </div>
 
         <div className="bg-white rounded-b-3xl shadow-2xl">
@@ -288,6 +278,16 @@ const SGPACalculator = () => {
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Fixed Add Course Button */}
+      <div className="fixed bottom-4 left-4 right-4 z-20 max-w-2xl mx-auto">
+        <button
+          onClick={addCourse}
+          className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold py-4 px-6 rounded-xl text-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 shadow-2xl"
+        >
+          ➕ Add Course
+        </button>
       </div>
 
       <style jsx>{`

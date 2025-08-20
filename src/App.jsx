@@ -72,8 +72,8 @@ const SGPACalculator = () => {
     if (sgpa >= 3.7) return "Excellent";
     if (sgpa >= 3.0) return "Good";
     if (sgpa >= 2.0) return "Satisfactory";
-    if (sgpa >= 1.0) return "Pass";
-    return "Fail";
+    if (sgpa >= 1.7) return "Pass";
+    return "Below Passing";
   };
 
   const calculateSGPA = () => {
@@ -126,9 +126,9 @@ const SGPACalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-purple-700 p-2 sm:p-5">
-      <div className="max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <div className="max-w-2xl mx-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 sm:p-8 text-center">
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 sm:p-8 text-center rounded-t-3xl shadow-2xl">
           <div className="flex justify-center mb-4">
             <img
               src="/ICP-logo.png"
@@ -147,141 +147,146 @@ const SGPACalculator = () => {
           </p>
         </div>
 
-        <div className="p-6 sm:p-8">
-          {/* Install Prompt */}
-          {showInstallPrompt && (
-            <div className="bg-gradient-to-r from-amber-400 to-orange-400 text-amber-900 p-4 rounded-xl mb-6 text-center">
-              <strong>📱 Install App</strong>
-              <br />
-              Add this calculator to your home screen for quick access!
-              <br />
-              <button
-                onClick={installApp}
-                className="bg-amber-900 text-white px-5 py-2 rounded-lg mt-3 font-semibold hover:bg-amber-800 transition-colors"
-              >
-                Install Now
-              </button>
-            </div>
-          )}
-
-          {/* Add Course Button */}
+        {/* Sticky Add Course Button */}
+        <div className="sticky top-0 z-10 bg-white p-4 sm:p-6 border-b border-gray-200 shadow-lg">
           <button
             onClick={addCourse}
-            className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold py-4 px-6 rounded-xl mb-6 text-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold py-4 px-6 rounded-xl text-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           >
             ➕ Add Course
           </button>
+        </div>
 
-          {/* Courses */}
-          <div className="space-y-4 mb-6">
-            {courses.map((course, index) => (
-              <div
-                key={course.id}
-                className="bg-slate-50 border-2 border-slate-200 rounded-2xl p-5 hover:border-indigo-500 transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-lg font-semibold text-indigo-600">
-                    Course {index + 1}
-                  </h3>
-                  <button
-                    onClick={() => removeCourse(course.id)}
-                    className="bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold hover:bg-red-600 transition-colors"
-                    title="Remove Course"
-                  >
-                    ×
-                  </button>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-               
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Grade Point (GPA)
-                    </label>
-                    <input
-                      type="number"
-                      min="0"
-                      max="4"
-                      step="0.01"
-                      placeholder="e.g., 3.75"
-                      value={course.gpa}
-                      onChange={(e) =>
-                        updateCourse(course.id, "gpa", e.target.value)
-                      }
-                      className="w-full p-3 border-2 border-gray-300 rounded-xl text-base focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Credit Hours
-                    </label>
-                    <input
-                      type="number"
-                      min="1"
-                      max="6"
-                      step="1"
-                      placeholder="e.g., 3"
-                      value={course.credits}
-                      onChange={(e) =>
-                        updateCourse(course.id, "credits", e.target.value)
-                      }
-                      className="w-full p-3 border-2 border-gray-300 rounded-xl text-base focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-colors"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="bg-white rounded-b-3xl shadow-2xl">
 
-          {/* Calculate Button */}
-          <button
-            onClick={calculateSGPA}
-            disabled={courses.length === 0}
-            className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-5 px-6 rounded-xl mb-8 text-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
-          >
-            🧮 Calculate SGPA
-          </button>
+          <div className="p-6 sm:p-8">
+            {/* Install Prompt */}
+            {showInstallPrompt && (
+              <div className="bg-gradient-to-r from-amber-400 to-orange-400 text-amber-900 p-4 rounded-xl mb-6 text-center">
+                <strong>📱 Install App</strong>
+                <br />
+                Add this calculator to your home screen for quick access!
+                <br />
+                <button
+                  onClick={installApp}
+                  className="bg-amber-900 text-white px-5 py-2 rounded-lg mt-3 font-semibold hover:bg-amber-800 transition-colors"
+                >
+                  Install Now
+                </button>
+              </div>
+            )}
 
-          {/* Result */}
-          {result && (
-            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-sky-500 rounded-2xl p-6 mb-6 text-center animate-fadeIn">
-              <h3 className="text-xl font-semibold text-sky-700 mb-3">
-                📈 Your SGPA Result
-              </h3>
-              <div className="text-5xl sm:text-6xl font-black text-blue-600 my-4">
-                {result.sgpa}
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <div className="text-2xl font-bold text-indigo-600">
-                    {result.totalCredits}
+            {/* Courses */}
+            <div className="space-y-4 mb-6">
+              {courses.map((course, index) => (
+                <div
+                  key={course.id}
+                  className="bg-slate-50 border-2 border-slate-200 rounded-2xl p-5 hover:border-indigo-500 transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-lg font-semibold text-indigo-600">
+                      Course {index + 1}
+                    </h3>
+                    <button
+                      onClick={() => removeCourse(course.id)}
+                      className="bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold hover:bg-red-600 transition-colors"
+                      title="Remove Course"
+                    >
+                      ×
+                    </button>
                   </div>
-                  <div className="text-sm text-gray-600 mt-1">Total Credits</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Grade Point (GPA)
+                      </label>
+                      <input
+                        type="number"
+                        min="0"
+                        max="4"
+                        step="0.01"
+                        placeholder="e.g., 3.75"
+                        value={course.gpa}
+                        onChange={(e) =>
+                          updateCourse(course.id, "gpa", e.target.value)
+                        }
+                        className="w-full p-3 border-2 border-gray-300 rounded-xl text-base focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Credit Hours
+                      </label>
+                      <input
+                        type="number"
+                        min="1"
+                        max="6"
+                        step="1"
+                        placeholder="e.g., 3"
+                        value={course.credits}
+                        onChange={(e) =>
+                          updateCourse(course.id, "credits", e.target.value)
+                        }
+                        className="w-full p-3 border-2 border-gray-300 rounded-xl text-base focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-colors"
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <div className="text-2xl font-bold text-indigo-600">
-                    {result.totalCourses}
-                  </div>
-                  <div className="text-sm text-gray-600 mt-1">Courses</div>
-                </div>
-                <div className="bg-white p-4 rounded-xl shadow-sm col-span-2 sm:col-span-1">
-                  <div className="text-2xl font-bold text-indigo-600">
-                    {result.gradeCategory}
-                  </div>
-                  <div className="text-sm text-gray-600 mt-1">
-                    Grade Category
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
-          )}
 
-          {/* Clear Button */}
-          <button
-            onClick={clearAll}
-            className="w-full bg-red-500 text-white font-semibold py-3 px-6 rounded-xl hover:bg-red-600 transition-colors"
-          >
-            🗑️ Clear All Courses
-          </button>
+            {/* Calculate Button */}
+            <button
+              onClick={calculateSGPA}
+              disabled={courses.length === 0}
+              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-5 px-6 rounded-xl mb-8 text-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+            >
+              🧮 Calculate SGPA
+            </button>
+
+            {/* Result */}
+            {result && (
+              <div className="bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-sky-500 rounded-2xl p-6 mb-6 text-center animate-fadeIn">
+                <h3 className="text-xl font-semibold text-sky-700 mb-3">
+                  📈 Your SGPA Result
+                </h3>
+                <div className="text-5xl sm:text-6xl font-black text-blue-600 my-4">
+                  {result.sgpa}
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
+                  <div className="bg-white p-4 rounded-xl shadow-sm">
+                    <div className="text-2xl font-bold text-indigo-600">
+                      {result.totalCredits}
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">Total Credits</div>
+                  </div>
+                  <div className="bg-white p-4 rounded-xl shadow-sm">
+                    <div className="text-2xl font-bold text-indigo-600">
+                      {result.totalCourses}
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">Courses</div>
+                  </div>
+                  <div className="bg-white p-4 rounded-xl shadow-sm col-span-2 sm:col-span-1">
+                    <div className="text-2xl font-bold text-indigo-600">
+                      {result.gradeCategory}
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">
+                      Grade Category
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Clear Button */}
+            <button
+              onClick={clearAll}
+              className="w-full bg-red-500 text-white font-semibold py-3 px-6 rounded-xl hover:bg-red-600 transition-colors"
+            >
+              🗑️ Clear All Courses
+            </button>
+          </div>
         </div>
       </div>
 
